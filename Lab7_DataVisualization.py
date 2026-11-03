@@ -28,52 +28,33 @@ SHAPEFILE_PATH = (
     / "ne_110m_admin_0_countries.shp"
 )
 
-# DEBUG: Test shapefile loading
-
-st.subheader("Shapefile Loading Test")
-
-try:
-    test_gdf = gpd.read_file(SHAPEFILE_PATH)
-
-    st.success("Shapefile loaded successfully!")
-
-    st.write("Number of countries:", len(test_gdf))
-
-    st.write("Columns:", test_gdf.columns.tolist())
-
-    st.dataframe(test_gdf.head())
-
-except Exception as e:
-
-    st.error("Failed to load shapefile!")
-
-    st.exception(e)
-    
+ 
 
 @st.cache_data
 def load_data():
 
-    if not SHAPEFILE_PATH.exists():
-        return None
-
-    gdf = gpd.read_file(SHAPEFILE_PATH)
-
-    # Use the dataset's existing population estimates if available
-    if "pop_est" not in gdf.columns:
-        if "POP_EST" in gdf.columns:
-            gdf["pop_est"] = gdf["POP_EST"]
-        else:
-            np.random.seed(0)
-            gdf["pop_est"] = np.random.randint(
-                1_000_000,
-                1_000_000_000,
-                size=len(gdf)
+    try:
+        if not SHAPEFILE_PATH.exists():
+            raise FileNotFoundError(
+                f"Shapefile not found: {SHAPEFILE_PATH}"
             )
 
-    return gdf
+        gdf = gpd.read_file(SHAPEFILE_PATH)
 
+        # Check whether the dataset is empty
+        if gdf.empty:
+            raise ValueError("The shapefile contains no data.")
 
-gdf = load_data()
+        return gdf
+
+    except Exception as e:
+        st.error(f"Error loading map dataset: {e}")
+        return None
+world = load_data()
+
+if world is None:
+    st.error("Unable to load map dataset.")
+    st.stop()
 
 # --------------------------------------------------
 # 3. PROJECTION OPTIONS
