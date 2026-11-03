@@ -28,21 +28,26 @@ SHAPEFILE_PATH = (
     / "ne_110m_admin_0_countries.shp"
 )
 
-st.write("BASE DIRECTORY:", BASE_DIR)
-st.write("SHAPEFILE PATH:", SHAPEFILE_PATH)
-st.write("FILE EXISTS:", SHAPEFILE_PATH.exists())
+# DEBUG: Test shapefile loading
 
-st.write("FILES IN DIRECTORY:")
+st.subheader("Shapefile Loading Test")
 
-if BASE_DIR.exists():
-    st.write(list(BASE_DIR.iterdir()))
+try:
+    test_gdf = gpd.read_file(SHAPEFILE_PATH)
 
-MAP_FOLDER = BASE_DIR / "ne_110m_admin_0_countries"
+    st.success("Shapefile loaded successfully!")
 
-st.write("MAP FOLDER EXISTS:", MAP_FOLDER.exists())
+    st.write("Number of countries:", len(test_gdf))
 
-if MAP_FOLDER.exists():
-    st.write("MAP FOLDER CONTENTS:", list(MAP_FOLDER.iterdir()))
+    st.write("Columns:", test_gdf.columns.tolist())
+
+    st.dataframe(test_gdf.head())
+
+except Exception as e:
+
+    st.error("Failed to load shapefile!")
+
+    st.exception(e)
     
 
 @st.cache_data
