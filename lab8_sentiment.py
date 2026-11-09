@@ -10,8 +10,7 @@ from wordcloud import WordCloud, STOPWORDS
 # ==================================================
 
 st.set_page_config(
-    page_title="Lab 8 | Sentiment Analysis",
-    page_icon="💬",
+    page_title="Lab 8 Sentiment Analysis",
     layout="wide"
 )
 
