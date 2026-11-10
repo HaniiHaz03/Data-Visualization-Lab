@@ -184,11 +184,7 @@ ax.axis("off")
 
 st.pyplot(fig, clear_figure=True)
 
-st.caption(
-    "Word size represents how frequently a word appears after "
-    "stop words are removed. Larger words do not necessarily "
-    "indicate stronger opinions or greater customer satisfaction."
-)
+
 
 # ==================================================
 # 9. TOPIC ANALYSIS
