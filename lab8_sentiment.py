@@ -15,10 +15,7 @@ st.set_page_config(
 )
 
 st.title("Product Feedback: Qualitative Data and Sentiment Analysis")
-st.caption(
-    "Practice data only. Automated sentiment labels are estimates "
-    "and should be reviewed by humans."
-)
+
 
 # ==================================================
 # 2. SAMPLE PRODUCT REVIEWS
