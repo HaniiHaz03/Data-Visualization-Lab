@@ -267,11 +267,7 @@ st.dataframe(
     hide_index=True
 )
 
-st.caption(
-    "Manual assessments are examples for this exercise. "
-    "Compare them with the actual VADER labels and revise them "
-    "if your own review gives a different conclusion."
-)
+
 
 # ==================================================
 # 12. NEGATION TEST
