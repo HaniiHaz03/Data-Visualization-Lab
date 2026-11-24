@@ -200,33 +200,3 @@ with st.expander("View the rating data"):
         hide_index=True
     )
 
-# ==================================================
-# 10. EXPLAIN THE GRAPH
-# ==================================================
-
-st.subheader("How to Read This Chart")
-
-st.write(
-    "- The vertical axis lists the five data visualization skills."
-)
-
-st.write(
-    "- The horizontal axis shows average self-ratings from 1 to 5."
-)
-
-st.write(
-    "- Each bar represents the average rating for one skill."
-)
-
-st.write(
-    "- The orange bar highlights the skill with the lowest average rating."
-)
-
-st.write(
-    "- The values are fictional averages, not individual student scores."
-)
-
-st.caption(
-    "The results are intended for chart-design practice and "
-    "should not be interpreted as findings from a real survey."
-)
